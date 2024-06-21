@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Listagem Pessoas</title>
+    </h:head>
+    <h:body>
+        <h1><p:outputLabel value="Listando todas as Pessoas"/></h1>
+        <h:form id="form1">
+            <p:dataTable id="table1" value="#{cadastroPessoaManagedBean.pessoas}" var="pessoa"> 
+                <p:column headerText="ID">
+                    <p:outputLabel value="#{pessoa.id}"/>
+                </p:column>
+                <p:column headerText="Nome">
+                    <p:outputLabel value="#{pessoa.nome}"/>
+                </p:column>
+                <p:column headerText="Idade">
+                    <p:outputLabel value="#{pessoa.idade}"/>
+                </p:column>
+                <p:column headerText="Sexo">
+                    <p:outputLabel value="#{pessoa.sexo}"/>
+                </p:column>
+                <p:column headerText="Ações">
+                    <p:panelGrid columns="3">
+                        <p:commandLink value="Endereços" action="#{cadastroPessoaManagedBean.ListarEnderecos(pessoa)}"/>
+                        <p:commandLink value="Editar" action="#{cadastroPessoaManagedBean.EditarPessoa(pessoa)}"/>
+                        <p:commandLink value="Excluir" action="#{cadastroPessoaManagedBean.ExcluirPessoa(pessoa)}" update=":form1:table1" ajax="true" />
+                    </p:panelGrid>
+                </p:column>
+            </p:dataTable>
+            <p:panelGrid columns="2">
+                <p:commandButton value="Voltar" action="#{cadastroPessoaManagedBean.Voltar('inicio')}" />
+                <p:commandButton value="Inicio" action="#{cadastroPessoaManagedBean.VoltarInicio}" />
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>
